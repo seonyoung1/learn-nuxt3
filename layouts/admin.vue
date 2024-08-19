@@ -1,7 +1,7 @@
 <template>
     <div class="relative">
-        <header class="h-12 w-full bg-black flex items-center justify-between px-5 shadow-sm">
-            <h1 class="text-white"><NuxtLink to="/">Vue + Nuxt Mastery Class</NuxtLink></h1>
+        <header class="h-12 w-full bg-green-950 flex items-center justify-between px-5 shadow-sm">
+            <h1 class="text-white">Vue + Nuxt Admin</h1>
             <div class="nav">
                 <NuxtLink to="/about" class="text-white">About</NuxtLink>
                 <span class="text-sm text-gray-400 px-4 leading-4">|</span>
@@ -17,7 +17,7 @@
 <style lang="scss">
 .nav {
     .router-link-active {
-        @apply text-blue-500;
+        @apply text-pink-500;
     }
 }
 </style>

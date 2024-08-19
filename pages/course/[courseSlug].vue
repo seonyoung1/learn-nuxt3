@@ -33,16 +33,17 @@
         </form>
         <template #footer>
             <div class="flex items-center justify-between mb-8">
-                <NuxtLink v-if="prevCourse" :to="prevCourse.path" class="border border-gray-600 rounded px-6 py-1.5">이전강의</NuxtLink>
+                <!-- <NuxtLink v-if="prevCourse" :to="prevCourse.path" class="border border-gray-600 rounded px-6 py-1.5">이전강의</NuxtLink>-->
+                <button @click="movePage(prevCourse?.path)" class="border border-gray-600 rounded px-6 py-1.5">이전강의</button>
                 <NuxtLink v-if="nextCourse" :to="nextCourse.path" class="ml-auto border border-gray-600 rounded px-6 py-1.5">다음강의</NuxtLink>
             </div>
         </template>
     </AppCard>
 </template>
 <script setup lang="ts">
-import { useCourse } from '~/composables/useCourse';
 import { useRoute } from '#vue-router';
 import { ref } from 'vue';
+import { useCourse } from '~/composables/useCourse';
 
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
@@ -51,9 +52,13 @@ const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 definePageMeta({
     key: (route) => route.fullPath,
     title: 'learn nuxt',
-    keepalive: true
+    keepalive: true,
 });
 
 const completed = ref(false);
 const memo = ref('');
+
+const movePage = async (path: any) => {
+    if (path) await navigateTo(path);
+};
 </script>
