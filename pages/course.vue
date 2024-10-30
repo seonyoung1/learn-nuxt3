@@ -8,6 +8,9 @@
                         {{ index + 1 }}. {{ course.title }}
                     </NuxtLink>
                 </div>
+                <div>
+                    <NuxtLink to="/course/empty">throw error</NuxtLink>
+                </div>
             </div>
         </div>
         <NuxtPage />

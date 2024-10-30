@@ -25,8 +25,8 @@
         <div class="py-4 text-sm">
             {{ course?.content }}
         </div>
-        <form @submit.prevent class="mb-5">
-            <button @click="completed = !completed" type="button" class="w-full py-2 border border-green-500 rounded" :class="completed ? 'bg-green-200' : ''">
+        <form class="mb-5" @submit.prevent>
+            <button type="button" class="w-full py-2 border border-green-500 rounded" :class="completed ? 'bg-green-200' : ''" @click="completed = !completed">
                 수강완료
             </button>
             <textarea v-model="memo" class="border border-green-500 px-4 py-2 mt-2 rounded w-full"></textarea>
@@ -40,9 +40,9 @@
     </AppCard>
 </template>
 <script setup lang="ts">
-import { useCourse } from '~/composables/useCourse';
 import { useRoute } from '#vue-router';
 import { ref } from 'vue';
+import { useCourse } from '~/composables/useCourse';
 
 const route = useRoute();
 const courseSlug = route.params.courseSlug as string;
@@ -51,9 +51,29 @@ const { course, prevCourse, nextCourse } = useCourse(courseSlug);
 definePageMeta({
     key: (route) => route.fullPath,
     title: 'learn nuxt',
-    keepalive: true
+    // keepalive: true,
+    validate: (route) => {
+        const courseSlug = route.params.courseSlug as string;
+        const { course } = useCourse(courseSlug);
+        if (!course) {
+            throw createError({
+                status: 404,
+                statusMessage: 'Course not found',
+                // fatal: true,
+            });
+        }
+        return true;
+    },
 });
 
 const completed = ref(false);
 const memo = ref('');
+
+// if (!course) {
+//     throw createError({
+//         status: 404,
+//         statusMessage: 'Course not found',
+//         // fatal: true,
+//     });
+// }
 </script>
