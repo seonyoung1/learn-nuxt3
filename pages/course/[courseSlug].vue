@@ -52,17 +52,21 @@ definePageMeta({
     key: (route) => route.fullPath,
     title: 'learn nuxt',
     // keepalive: true,
-    validate: (route) => {
+    // validate: (route) => {
+    middleware: (route) => {
         const courseSlug = route.params.courseSlug as string;
         const { course } = useCourse(courseSlug);
         if (!course) {
-            throw createError({
-                status: 404,
-                statusMessage: 'Course not found',
-                // fatal: true,
-            });
+            return navigateTo('/');
+            // return abortNavigation(
+            //     createError({
+            //         status: 404,
+            //         statusMessage: 'Course not found',
+            //         // fatal: true,
+            //     }),
+            // );
         }
-        return true;
+        // return true;
     },
 });
 

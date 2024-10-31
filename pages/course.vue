@@ -9,7 +9,7 @@
                     </NuxtLink>
                 </div>
                 <div>
-                    <NuxtLink to="/course/empty">throw error</NuxtLink>
+                    <NuxtLink to="empty">throw error</NuxtLink>
                 </div>
             </div>
         </div>

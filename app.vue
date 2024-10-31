@@ -5,5 +5,5 @@
 </template>
 <script setup lang="ts">
 const nuxtApp = useNuxtApp();
-console.log(nuxtApp);
+// console.log(nuxtApp);
 </script>

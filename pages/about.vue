@@ -4,4 +4,8 @@
         <p>설명~</p>
     </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+    middleware: ['admin-only'],
+});
+</script>
