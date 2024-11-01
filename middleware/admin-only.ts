@@ -1,7 +1,9 @@
-import { useAuthUser } from '~/composables/useAuthUser';
+import { useAuthenticated } from '~/composables/auth/useAuthenticated';
+import { useAdmin } from '~/composables/auth/useAdmin';
 
 export default defineNuxtRouteMiddleware(() => {
-    const { isAdmin, isAuthenticated } = useAuthUser();
+    const isAuthenticated = useAuthenticated();
+    const isAdmin = useAdmin();
 
     if (!isAuthenticated.value) {
         return navigateTo('/login');

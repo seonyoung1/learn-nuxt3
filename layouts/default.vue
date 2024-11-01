@@ -5,7 +5,8 @@
                 <NuxtLink to="/">Vue + Nuxt Mastery Class</NuxtLink>
             </h1>
             <div class="text-white flex items-center gap-2">
-                <NuxtLink to="/about">{{ $t('admin') }}</NuxtLink>
+                <NuxtLink to="/admin">{{ $t('admin') }}</NuxtLink>
+                <NuxtLink to="/about">{{ $t('about') }}</NuxtLink>
                 <!--                <div>{{ $t('about') }}</div>-->
                 <!--                <div>{{ $t('youtube') }}</div>-->
                 <!--                <div>{{ $t('admin') }}</div>-->
@@ -23,7 +24,7 @@
                     </button>
                 </div>
                 <div>|</div>
-                <NuxtLink v-if="!isAuthenticateds" to="/login">{{ $t('login') }}</NuxtLink>
+                <NuxtLink v-if="!isAuthenticated" to="/login">{{ $t('login') }}</NuxtLink>
                 <NuxtLink v-else to="/">{{ $t('logout') }}</NuxtLink>
             </div>
         </header>
@@ -35,9 +36,11 @@
 <script setup lang="ts">
 // import { useI18n } from 'vue-i18n';
 
-import { useAuthUser } from '~/composables/useAuthUser';
+import { useAuthUser } from '~/composables/auth/useAuthUser';
+import { useAuthenticated } from '~/composables/auth/useAuthenticated';
 
-const { isAuthenticateds } = useAuthUser();
+const authUser = useAuthUser();
+const isAuthenticated = useAuthenticated();
 
 interface Languages {
     name: string;

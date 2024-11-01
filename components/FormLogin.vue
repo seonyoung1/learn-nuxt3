@@ -6,8 +6,8 @@
                 <input id="userEmail" v-model="form.email" type="text" class="border border-gray-600 px-4 py-2 w-full" />
             </div>
             <div class="pb-8">
-                <label for="userEmail">비밀번호</label>
-                <input id="userEmail" v-model="form.password" type="password" class="border border-gray-600 px-4 py-2 w-full" />
+                <label for="userPassword">비밀번호</label>
+                <input id="userPassword" v-model="form.password" type="password" class="border border-gray-600 px-4 py-2 w-full" />
             </div>
 
             <div v-if="error" class="py-4 text-red text-center">{{ error.message }}</div>
@@ -17,7 +17,7 @@
     </form>
 </template>
 <script setup lang="ts">
-import { useAuth } from '~/composables/useAuth';
+import { useAuth } from '~/composables/auth/useAuth';
 
 const emit = defineEmits<{
     success: [];
